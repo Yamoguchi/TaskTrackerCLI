@@ -19,14 +19,18 @@ func main() {
 		fmt.Println("delete command")
 
 	case "list":
-		if os.Args[2] == "done" {
-			fmt.Println("list done")
-		} else if os.Args[2] == "todo" {
-			fmt.Println("List todo")
-		} else if os.Args[2] == "in-progress" {
-			fmt.Println("List in-progress")
+		if !(len(os.Args) < 3) {
+			if os.Args[2] == "done" {
+				fmt.Println("list done")
+			} else if os.Args[2] == "todo" {
+				fmt.Println("List todo")
+			} else if os.Args[2] == "in-progress" {
+				fmt.Println("List in-progress")
+			} else {
+				fmt.Println("Wrong command. Check tutotial")
+			}
 		} else {
-			fmt.Println("Wrong command. Check tutotial")
+			fmt.Println("List command")
 		}
 
 	case "mark-in-progress":
