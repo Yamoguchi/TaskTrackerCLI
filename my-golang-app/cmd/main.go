@@ -17,12 +17,23 @@ func main() {
 
 	case "update":
 		fmt.Println("Update command")
-		taskId, _ := strconv.Atoi((os.Args[2]))
-		Command.UpdateTask(taskId, os.Args[3])
+		taskId, err := strconv.Atoi((os.Args[2]))
+
+		if err == nil {
+			Command.UpdateTask(taskId, os.Args[3])
+		} else {
+			fmt.Println("Ошибка ввода")
+		}
 
 	case "delete":
-		taskId, _ := strconv.Atoi((os.Args[2]))
-		Command.DeleteTask(taskId)
+		taskId, err := strconv.Atoi((os.Args[2]))
+
+		if err == nil {
+			Command.DeleteTask(taskId)
+		} else {
+			fmt.Println("Ошибка ввода")
+		}
+
 		fmt.Println("delete command")
 
 	case "list":
@@ -46,13 +57,23 @@ func main() {
 
 	case "mark-in-progress":
 		fmt.Println("Mark-in-progress command")
-		taskId, _ := strconv.Atoi((os.Args[2]))
-		Command.MarkTaskInProgress(taskId)
+		taskId, err := strconv.Atoi((os.Args[2]))
+
+		if err == nil {
+			Command.MarkTaskInProgress(taskId)
+		} else {
+			fmt.Println("Ошибка ввода")
+		}
 
 	case "mark-done":
 		fmt.Println("Mark-done command")
-		taskId, _ := strconv.Atoi((os.Args[2]))
-		Command.MarkTaskDone(taskId)
+		taskId, err := strconv.Atoi((os.Args[2]))
+
+		if err == nil {
+			Command.MarkTaskDone(taskId)
+		} else {
+			fmt.Println("Ошибка ввода")
+		}
 
 	default:
 		fmt.Println("Wrong command")
