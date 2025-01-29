@@ -8,6 +8,14 @@ import (
 )
 
 func main() {
+
+	result := checkTasksJsonFileIsExist()
+
+	if !result {
+		fmt.Println("Такого файла нет")
+	}
+
+	// Getting command from arguments
 	command := os.Args[1]
 	invokeCommand(command)
 }
@@ -81,4 +89,18 @@ func invokeCommand(command string) {
 	default:
 		fmt.Println("Wrong command")
 	}
+}
+
+func checkTasksJsonFileIsExist() bool {
+	path := "./data/tasks.json"
+
+	_, err := os.Stat(path)
+
+	if err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+		fmt.Println("Ршибка доступа")
+	}
+	return true
 }
