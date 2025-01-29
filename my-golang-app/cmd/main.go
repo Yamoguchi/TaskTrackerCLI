@@ -9,7 +9,10 @@ import (
 
 func main() {
 	command := os.Args[1]
+	invokeCommand(command)
+}
 
+func invokeCommand(command string) {
 	switch command {
 	case "add":
 		fmt.Println("Add command")
