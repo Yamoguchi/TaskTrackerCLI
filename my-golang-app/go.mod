@@ -1,6 +1,3 @@
 module my-golang-app
 
-go 1.18
-
-require ( 
-)
+go 1.23.5

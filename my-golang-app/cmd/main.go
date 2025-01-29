@@ -1,10 +1,12 @@
 package main
 
 import (
-    "fmt"
-    "my-golang-app/pkg/utils"
+	"fmt"
+	"os"
 )
 
 func main() {
-    
+	args := os.Args[1:]
+
+	fmt.Println(args)
 }
