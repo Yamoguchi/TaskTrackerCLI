@@ -100,7 +100,8 @@ func checkTasksJsonFileIsExist() bool {
 		if os.IsNotExist(err) {
 			return false
 		}
-		fmt.Println("Ршибка доступа")
+		fmt.Println("Ошибка доступа")
+		return false
 	}
 	return true
 }
