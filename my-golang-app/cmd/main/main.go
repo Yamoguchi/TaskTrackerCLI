@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	Command "my-golang-app/pkg/commandHandler"
+	Command "my-golang-app/internal/commandHandler"
 	"os"
 	"path/filepath"
 	"strconv"
