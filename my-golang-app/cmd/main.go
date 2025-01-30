@@ -22,8 +22,12 @@ func main() {
 	}
 
 	// Getting command from arguments
-	command := os.Args[1]
-	invokeCommand(command)
+	if len(os.Args) < 2 {
+		fmt.Println("Вы не указали аргументы. Воспользуйтесь подсказкой")
+	} else {
+		command := os.Args[1]
+		invokeCommand(command)
+	}
 }
 
 func invokeCommand(command string) {
