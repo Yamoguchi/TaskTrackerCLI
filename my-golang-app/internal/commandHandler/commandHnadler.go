@@ -73,12 +73,19 @@ func DeleteTask(taskId int) {
 }
 
 func ListTasks() {
-	allTasks, err := jsonreader.ReadJson()
+	tasks, err := jsonreader.ReadJson()
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(allTasks)
+
+	fmt.Printf("%-5s\t%-30s\t%-15s\n", "ID", "Task", "Status")
+	fmt.Println("--------------------------------------------------------")
+
+	// Вывод задач
+	for _, task := range tasks {
+		fmt.Printf("%-5d\t%-30s\t%-15s\n", task.Id, task.Text, task.Status)
+	}
 }
 
 func ListDoneTasks() {
