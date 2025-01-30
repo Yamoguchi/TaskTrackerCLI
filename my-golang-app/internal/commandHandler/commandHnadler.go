@@ -2,21 +2,33 @@ package commandhandler
 
 import (
 	"fmt"
+	"my-golang-app/internal/task"
 	jsonreader "my-golang-app/internal/utils/jsonReader"
+	jsonwriter "my-golang-app/internal/utils/jsonWriter"
 )
 
-func AddTask(description string) string {
+func AddTask(description string) {
 	if len(description) == 0 {
-		return "No task"
+		fmt.Println("Не указана новая задача")
+		return
 	}
 
-	// newTask := task.Task{
-	// 	Id:     1,
-	// 	Text:   "My custom task",
-	// 	Status: "todo",
-	// }
+	tasks, err := jsonreader.ReadJson()
 
-	return ""
+	if err != nil {
+		fmt.Print(err)
+		return
+	}
+
+	newTask := task.Task{
+		Id:     jsonreader.CheckLastTaskId(tasks) + 1,
+		Text:   description,
+		Status: "todo",
+	}
+
+	tasks = append(tasks, newTask)
+
+	jsonwriter.WriteJson(tasks)
 }
 
 func UpdateTask(taskId int, newTask string) {
