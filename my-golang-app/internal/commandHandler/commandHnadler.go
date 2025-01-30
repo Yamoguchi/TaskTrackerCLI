@@ -56,6 +56,20 @@ func UpdateTask(taskId int, newTask string) {
 
 func DeleteTask(taskId int) {
 
+	if taskId < 0 {
+		fmt.Println("You have specified an incorrect parameter")
+		return
+	}
+
+	tasks, err := jsonreader.ReadJson()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	idOfSearchingTask := jsonreader.FindTaskById(taskId, tasks)
+
+	jsonwriter.WriteJson(append(tasks[:idOfSearchingTask], tasks[idOfSearchingTask+1]))
 }
 
 func ListTasks() {
