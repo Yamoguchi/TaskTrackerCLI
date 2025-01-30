@@ -4,15 +4,21 @@ import (
 	"fmt"
 	Command "my-golang-app/pkg/commandHandler"
 	"os"
+	"path/filepath"
 	"strconv"
 )
+
+const pathToData string = "./data/tasks.json"
 
 func main() {
 
 	result := checkTasksJsonFileIsExist()
 
 	if !result {
-		fmt.Println("Такого файла нет")
+		err := createEmptyJsonFile()
+		if err != nil {
+			fmt.Println("Произошла ошибка создания tasks.json", err)
+		}
 	}
 
 	// Getting command from arguments
@@ -104,4 +110,25 @@ func checkTasksJsonFileIsExist() bool {
 		return false
 	}
 	return true
+}
+
+func createEmptyJsonFile() error {
+	dir := filepath.Dir(pathToData)
+	err := os.MkdirAll(dir, 0755)
+	if err != nil {
+		return err
+	}
+
+	file, err := os.Create(pathToData)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	_, err = file.WriteString("{}")
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
