@@ -27,7 +27,7 @@ func ReadJson() ([]task.Task, error) {
 		return nil, err
 	}
 	if isEmpty {
-		return nil, fmt.Errorf("json файл пуст")
+		return nil, nil
 	}
 
 	var tasks []task.Task
