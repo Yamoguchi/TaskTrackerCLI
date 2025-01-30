@@ -98,9 +98,7 @@ func invokeCommand(command string) {
 }
 
 func checkTasksJsonFileIsExist() bool {
-	path := "./data/tasks.json"
-
-	_, err := os.Stat(path)
+	_, err := os.Stat(pathToData)
 
 	if err != nil {
 		if os.IsNotExist(err) {
