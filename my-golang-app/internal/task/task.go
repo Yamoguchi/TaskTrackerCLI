@@ -5,3 +5,7 @@ type Task struct {
 	Text   string `json:"text"`
 	Status string `json:"status"`
 }
+
+func (t *Task) UpdateTask(newTask string) {
+	t.Text = newTask
+}

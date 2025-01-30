@@ -9,3 +9,12 @@ func CheckLastTaskId(tasks []task.Task) int {
 		return tasks[len(tasks)-1].Id
 	}
 }
+
+func FindTaskById(taskId int, tasks []task.Task) int {
+	for i := range tasks {
+		if tasks[i].Id == taskId {
+			return i
+		}
+	}
+	return -1
+}

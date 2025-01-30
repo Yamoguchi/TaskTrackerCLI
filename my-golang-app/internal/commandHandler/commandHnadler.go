@@ -32,7 +32,26 @@ func AddTask(description string) {
 }
 
 func UpdateTask(taskId int, newTask string) {
+	if len(newTask) == 0 || taskId < 0 {
+		fmt.Println("You have specified an incorrect parameter")
+		return
+	}
 
+	tasks, err := jsonreader.ReadJson()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	idOfSearchingTask := jsonreader.FindTaskById(taskId, tasks)
+	if idOfSearchingTask == -1 {
+		fmt.Println("Such a task does not exist")
+		return
+	}
+
+	tasks[idOfSearchingTask].UpdateTask(newTask)
+
+	jsonwriter.WriteJson(tasks)
 }
 
 func DeleteTask(taskId int) {
