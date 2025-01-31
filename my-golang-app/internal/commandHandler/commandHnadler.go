@@ -141,11 +141,3 @@ func ListTasksByStatus(status string) {
 
 	ListTasks(searchTasks)
 }
-
-func ListTodoTasks() {
-
-}
-
-func ListInProgressTasks() {
-
-}
