@@ -49,7 +49,7 @@ func UpdateTask(taskId int, newTask string) {
 		return
 	}
 
-	tasks[idOfSearchingTask].UpdateTask(newTask)
+	tasks[idOfSearchingTask].UpdateTaskText(newTask)
 
 	jsonwriter.WriteJson(tasks)
 }
@@ -72,11 +72,14 @@ func DeleteTask(taskId int) {
 	jsonwriter.WriteJson(append(tasks[:idOfSearchingTask], tasks[idOfSearchingTask+1]))
 }
 
-func ListTasks() {
-	tasks, err := jsonreader.ReadJson()
-	if err != nil {
-		fmt.Println(err)
-		return
+func ListTasks(tasks []task.Task) {
+	if tasks == nil {
+		var err error
+		tasks, err = jsonreader.ReadJson()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 
 	fmt.Printf("%-5s\t%-30s\t%-15s\n", "ID", "Task", "Status")
@@ -88,6 +91,39 @@ func ListTasks() {
 	}
 }
 
+func MarkTaskInProgress(taskId int) {
+	if taskId < 0 {
+		fmt.Println("You have specified an incorrect parameter")
+		return
+	}
+
+	tasks, err := jsonreader.ReadJson()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	idOfSearchingTask := jsonreader.FindTaskById(taskId, tasks)
+	tasks[idOfSearchingTask].UpdateTaskStatus("In progress")
+}
+
+func MarkTaskDone(taskId int) {
+	if taskId < 0 {
+		fmt.Println("You have specified an incorrect parameter")
+		return
+	}
+
+	tasks, err := jsonreader.ReadJson()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	idOfSearchingTask := jsonreader.FindTaskById(taskId, tasks)
+	tasks[idOfSearchingTask].UpdateTaskStatus("Done")
+
+}
+
 func ListDoneTasks() {
 
 }
@@ -97,13 +133,5 @@ func ListTodoTasks() {
 }
 
 func ListInProgressTasks() {
-
-}
-
-func MarkTaskInProgress(taskId int) {
-
-}
-
-func MarkTaskDone(taskId int) {
 
 }

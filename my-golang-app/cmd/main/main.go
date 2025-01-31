@@ -67,7 +67,7 @@ func invokeCommand(command string) {
 				fmt.Println("Wrong command. Check tutotial")
 			}
 		} else {
-			Command.ListTasks()
+			Command.ListTasks(nil)
 		}
 
 	case "mark-in-progress":
