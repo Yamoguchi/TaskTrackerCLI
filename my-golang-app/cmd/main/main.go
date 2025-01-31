@@ -57,12 +57,8 @@ func invokeCommand(command string) {
 
 	case "list":
 		if !(len(os.Args) < 3) {
-			if os.Args[2] == "done" {
-				Command.ListDoneTasks()
-			} else if os.Args[2] == "todo" {
-				Command.ListTodoTasks()
-			} else if os.Args[2] == "in-progress" {
-				Command.ListInProgressTasks()
+			if os.Args[2] == "done" || os.Args[2] == "todo" || os.Args[2] == "in-progress" {
+				Command.ListTasksByStatus(os.Args[2])
 			} else {
 				fmt.Println("Wrong command. Check tutotial")
 			}

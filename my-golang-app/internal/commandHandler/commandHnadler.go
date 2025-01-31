@@ -104,7 +104,7 @@ func MarkTaskInProgress(taskId int) {
 	}
 
 	idOfSearchingTask := jsonreader.FindTaskById(taskId, tasks)
-	tasks[idOfSearchingTask].UpdateTaskStatus("In progress")
+	tasks[idOfSearchingTask].UpdateTaskStatus("in-progress")
 }
 
 func MarkTaskDone(taskId int) {
@@ -120,12 +120,26 @@ func MarkTaskDone(taskId int) {
 	}
 
 	idOfSearchingTask := jsonreader.FindTaskById(taskId, tasks)
-	tasks[idOfSearchingTask].UpdateTaskStatus("Done")
+	tasks[idOfSearchingTask].UpdateTaskStatus("done")
 
 }
 
-func ListDoneTasks() {
+func ListTasksByStatus(status string) {
+	tasks, err := jsonreader.ReadJson()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
+	searchIds := jsonreader.FindTasksByStatus(status, tasks)
+
+	var searchTasks []task.Task
+
+	for _, i := range searchIds {
+		searchTasks = append(searchTasks, tasks[i])
+	}
+
+	ListTasks(searchTasks)
 }
 
 func ListTodoTasks() {
