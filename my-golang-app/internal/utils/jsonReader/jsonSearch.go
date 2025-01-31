@@ -18,3 +18,12 @@ func FindTaskById(taskId int, tasks []task.Task) int {
 	}
 	return -1
 }
+
+func FindTasksByStatus(status string, tasks []task.Task) (result []int) {
+	for i := range tasks {
+		if tasks[i].Status == status {
+			result = append(result, i)
+		}
+	}
+	return result
+}
