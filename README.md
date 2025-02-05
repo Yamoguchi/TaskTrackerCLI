@@ -1,14 +1,14 @@
 # TaskTrackerCLI
-
+project-url: https://roadmap.sh/projects/task-tracker
 TaskTrackerCLI is a command-line application written in Go that helps you manage and track your tasks efficiently.
 
 ## Features
 
-- Add new tasks with descriptions and due dates
+- Add new tasks with descriptions
 - List all tasks with their statuses
 - Mark tasks as completed
 - Delete tasks
-- Filter tasks by status or due date
+- Filter tasks by status
 
 ## Installation
 
@@ -33,21 +33,28 @@ After building the application, you can use the `tasktracker` command to manage 
 
 - Add a new task:
     ```sh
-    ./tasktracker add "Task description" --due "2023-10-15"
+    ./tasktracker add "Some new task"
     ```
-- List all tasks:
+- Update task:
     ```sh
-    ./tasktracker list
+    ./tasktracker update 1 "New text"
     ```
-- Mark a task as completed:
+- Marking a task as in progress or done
     ```sh
-    ./tasktracker complete 1
+    ./task-cli mark-in-progress 1
+    ./task-cli mark-done 1
     ```
 - Delete a task:
     ```sh
     ./tasktracker delete 1
     ```
+- List all tasks:
+    ```sh
+    ./tasktracker list
+    ```
 - Filter tasks by status:
     ```sh
-    ./tasktracker list --status completed
+    ./tasktracker list done
+    ./tasktracker list todo
+    ./tasktracker list in-progress
     ```
